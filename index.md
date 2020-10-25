@@ -1,37 +1,61 @@
-## Welcome to GitHub Pages
+# OULIK #
 
-You can use the [editor on GitHub](https://github.com/Memeplexx/oulik/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![Version](https://img.shields.io/npm/v/oulik.svg)
+[![Build Status](https://travis-ci.org/Memeplexx/oulik.svg?branch=master)](https://travis-ci.org/Memeplexx/oulik.svg?branch=master)
+![Coverage Status](https://coveralls.io/repos/github/Memeplexx/oulik/badge.svg?branch=master)
+![Package Size](https://badgen.net/bundlephobia/minzip/oulik)
+![Dependency count](https://badgen.net/bundlephobia/dependency-count/oulik)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### ***Compact, transparent, typesafe, in-line state-management*** ###
+---
+## WHAT PROBLEMS DOES THIS LIBRARY TRY TO SOLVE? ##
+👽 Many current state management solutions are typically plagued by:
+* **excessive plumbing** around setting up,
+* unergonomic ceremony around **data-flow**,
+* **convoluted immutable state updates** inside reducers,
+* actions which **needlessly re-describe simple updates**,
+* actions that **inaccurately describe complex updates**.
 
-### Markdown
+🚀 Oulik is not only **painless to setup**, it makes **state updates effortless** and **consistent**, while **accurately describing your action types** for you within the [Redux Devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+---
 
-```markdown
-Syntax highlighted code block
+⚠️ The rest of this guide illustrates how to use Oulik **without a framework.** It may be more appropriate for you to check out:  
 
-# Header 1
-## Header 2
-### Header 3
+![](assets/react.ico) <u>[OULIK-REACT](./docs/readme-react.md)</u>  
+![](assets/angular.png) <u>[OULIK-NG](./docs/readme-ng.md)</u>  
 
-- Bulleted
-- List
+## GETTING STARTED ##
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```console
+npm install oulik
 ```
+```Typescript
+import { make } from 'oulik';
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+const store = make('my store', {
+  user: { firstname: '', lastname: '' },
+  hobbies: new Array<string>(),
+});       
+```
+*Auto-registers with the Redux Devtools Extension. Initial state must be serializable.*
 
-### Jekyll Themes
+## WRITING STATE ##
+```Typescript
+store(s => s.user.firstname).replaceWith('James');
+```
+*Your state will be efficiently replaced using the action: `{ type: 'user.firstname.replaceWith()', payload: 'James' }`.*  
+***[All write options...](./docs/readme-write.md)***
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Memeplexx/oulik/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## READING STATE ##
 
-### Support or Contact
+```Typescript
+const username = store(s => s.user.firstname).read();
+```
+***[All read options...](./docs/readme-read.md)***
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## BEST PRACTICES ##
+
+Oulik is absurdly simple to use, and most of the time, the API corrals you into making only 1 decision.  
+That said, if you don't already have some experience with Redux or NGRX, it's worth checking this small guide.  
+***[State-management best practices](./docs/best-practices.md)***
