@@ -1,10 +1,8 @@
-# Gemfile
+# frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'jekyll', '~> 4.0'
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-group :jekyll_plugins do
-  gem 'jekyll-timeago', '~> 0.13.1'
-  gem "jekyll-menus"
-end
+# gem "rails"
+gem "jekyll"
