@@ -41,4 +41,6 @@ export class MyComponent {
   }
 }
 ```
-Note that, if your application store is not marked with `{ containerForNestedStores: true }` then a new store will be registered in the Devtools using the name you provided.
+Note that
+* If your application store is marked with `{ containerForNestedStores: true }` then your component state will be nested within your application state.
+* If your application store is not marked with `{ containerForNestedStores: true }` then a new store will be registered in the Devtools using the name you provided.
