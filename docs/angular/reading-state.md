@@ -2,7 +2,7 @@
 layout: default
 title: Reading State
 parent: Angular
-nav_order: 2
+nav_order: 3
 ---
 
 # Reading State
