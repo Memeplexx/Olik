@@ -46,7 +46,8 @@ export class MyComponent {
 
 ### **Consuming state** in your template
 ```ts
-import { make } from 'oulik-ng';
+import { observe } from 'oulik-ng';
+import { get } from './store';
 
 @Component({
   selector: 'app-component',
@@ -64,7 +65,8 @@ While this library exposes a `deriveFrom()` function (to memoize a single output
 ```ts
 import { combineLatest } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { get, observe } from 'oulik-ng';
+import { observe } from 'oulik-ng';
+import { get } from './store';
 
 @Component({
   selector: 'app-component',
