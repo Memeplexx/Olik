@@ -8,6 +8,6 @@ permalink: /docs/angular
 
 # Angular
 
-Oulik supports some minimal bindings for Angular applications.
+Oulik supports a thin layer of bindings so that you can more easily integrate Ouik within your Angular applications.
 {: .fs-6 .fw-300 }
 

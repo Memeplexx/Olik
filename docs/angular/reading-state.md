@@ -2,10 +2,10 @@
 layout: default
 title: Reading State
 parent: Angular
-nav_order: 3
+nav_order: 4
 ---
 
-# Reading State
+# 📖 Reading State
 {: .no_toc }
 
 ## Table of contents
@@ -22,37 +22,38 @@ Let's first assume that a store has been initialized as follows:
 ```ts
 import { make } from 'oulik-ng';
 
-const get = make({
-  todos: new Array<string>(),
-}); 
+const get = make({ todos: new Array<string>() }); 
 ```
 ---
 
-### **Synchronous** reads
+### Reading **synchronously**
 ```ts
+import { get } from './store';
+
 const todos = get(s => s.todos).read();
 ```
 
-### **Asynchronous** reads
+### **Listening** to state updates
 ```ts
 @Component({ ... })
 export class MyComponent {
   private listener = get(s => s.todos).onChange(todos => console.log(todos));
   ngOnDestroy() {
-    listener.unsubscribe(); // Please unsubscribe to avoid a memory leak
+    this.listener.unsubscribe(); // Please unsubscribe to avoid a memory leak
   }
 }
 ```  
 
 ### **Consuming state** in your template
+```html
+<div *ngFor="let todo of todos$ | async">{% raw %}{{todo}}{% endraw %}</div>
+```
 ```ts
 import { observe } from 'oulik-ng';
 import { get } from './store';
+// some imports omitted for brevity
 
-@Component({
-  selector: 'app-component',
-  template: `<div *ngFor="let todo of todos$ | async">{{todo}}</div>`
-})
+@Component({...})
 export class MyComponent {
   todos$ = observe(get(s => s.todos));
 }
@@ -62,16 +63,17 @@ export class MyComponent {
 
 While this library exposes a `deriveFrom()` function (to memoize a single output from multiple inputs), Angular users enjoy the benefits of RXJS (which can combine, and memoize, multiple data streams into a single output data stream):
 
+```html
+<div>{% raw %}data$ | async{% endraw %}</div>
+```
 ```ts
 import { combineLatest } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { observe } from 'oulik-ng';
 import { get } from './store';
+// some imports omitted for brevity
 
-@Component({
-  selector: 'app-component',
-  template: '<div>{{data$ | async}}</div>'
-})
+@Component({...})
 export class MyComponent {
   data$ = combineLatest([
     observe(get(s => s.todos)),

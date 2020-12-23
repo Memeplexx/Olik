@@ -2,11 +2,13 @@
 layout: default
 title: Nesting stores
 parent: Angular
-nav_order: 5
+nav_order: 6
 ---
 
-# Nesting Stores
+# 🥚 Nesting Stores
 {: .no_toc }
+
+Use **nested stores** to manage the internal state of your components, independantly from your **application store**. Configuring your application store as a container for nested stores will allow you to debug your nested stores in tandem with your application store within the Redux Devtools.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -16,9 +18,6 @@ nav_order: 5
 
 ---
 
-
-You can create nested stores to manage and debug your component state. For the sake of portability, these nested stores do not reference the application store directly.
-
 ### Configuring your application store to host nested stores
 ```ts
 import { make } from 'oulik-ng';
@@ -27,20 +26,19 @@ const get = make({ foo: '', bar: '' }, { containerForNestedStores: true })
 ```
 
 ### Creating and using a nested store
+```html
+<button (click)="onClickButton()">Click to increment</button>
+<div>The number is: {% raw %}{{num$ | async}}{% endraw %}</div>
+```
 ```ts
 import { makeNested } from 'oulik-ng';
+// some imports omitted for brevity
 
-@Component({
-  selector: 'app-component',
-  template: `<button (click)="onClickButton()">Increment</button>`
-})
-export class MyComponent {
-  get = makeNested({ num: 0 }, { name: 'MyComponent' });
-  onClickButton() {
-    this.get(s => s.num).replace(this.get(s => s.num).read() + 1)
-  }
+@Component({...})
+export class IncrementorComponent {
+  get = makeNested({ num: 0 }, { name: 'Incrementor' });
+  num$ = observe(get(s => s.num));
+  onClickButton = () => this.get(s => s.num).replace(this.get(s => s.num).read() + 1);
 }
 ```
-Note that
-* If your application store is marked with `{ containerForNestedStores: true }` then your component state will be nested within your application state.
-* If your application store is not marked with `{ containerForNestedStores: true }` then a new store will be registered in the Devtools using the name you provided.
+💡 Note that if your application store is **not** marked with `{ containerForNestedStores: true }` then your nested store will be registered as a **new** store within the Redux Devtools.
