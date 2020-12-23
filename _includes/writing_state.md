@@ -37,6 +37,5 @@ We can require that all updates be supplemented with a *tag* in order to help to
 const get = makeEnforceTags({ some: { value: '' } });
 get(s => s.some.value).replaceWith('new value', 'MyComponent');
 ```
-<small>In the above example, we've used 'MyComponent' as the tag but any user-defined string is acceptable.  
+In the above example, we've used 'MyComponent' as the tag but any user-defined string is acceptable.  
 For Webpack users, it may be more convenient to use the `__filename` node global object as a tag.  
-For Angular-CLI users, you will need to refer to ***[this guide](./readme-ng-tags.md)*** to make use of the `__filename` variable.</small>

@@ -8,7 +8,7 @@ nav_order: 6
 # 🥚 Nesting Stores
 {: .no_toc }
 
-Use **nested stores** to manage the internal state of your components, independantly from your **application store**. Configuring your application store as a container for nested stores will allow you to debug your nested stores in tandem with your application store within the Redux Devtools.
+**Nested stores** help you manage the internal state of your components, in a way that is loosely coupled from your **application store**. Configuring your application store as a container for nested stores will allow you to debug your nested stores in tandem with your application store within the Redux Devtools.
 
 ## Table of contents
 {: .no_toc .text-delta }

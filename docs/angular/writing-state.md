@@ -18,3 +18,4 @@ All state updates require an initial **selection** from your state tree followed
 
 
 {% include writing_state.md %}
+For Angular-CLI users, you will need to refer to ***[this guide](../../extras/angular-cli-filename){:target="_blank"}*** to make use of the `__filename` variable.
