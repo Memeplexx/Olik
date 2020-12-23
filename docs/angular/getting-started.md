@@ -8,7 +8,7 @@ nav_order: 2
 # 🎨 Getting started
 {: .no_toc }
 
-*Oulik-NG* wraps the core *Oulik* library in order to provide a convenient API to use within your Angular applications.
+**Oulik-NG** wraps the core **Oulik** library in order to provide a convenient API to use within your Angular applications.
 
 ---
 

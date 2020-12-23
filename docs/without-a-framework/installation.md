@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Installation
-parent: Framework-less
+parent: Without a framework
 nav_order: 1
 ---
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Framework-less
+title: Without a framework
 nav_order: 2
 has_children: true
-permalink: /docs/framework-less
+permalink: /docs/without-a-framework
 ---
 
 # No Framework
