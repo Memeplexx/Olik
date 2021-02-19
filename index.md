@@ -23,7 +23,7 @@ get(s => s.user.name)
 ```
 ```ts
 get(s => s.hobbies)
-  .find(h => h.id.eq(3)
+  .find(h => h.id).eq(3)
   .replace({ id: 3, txt: 'Baking' });
 ```
 ```ts
