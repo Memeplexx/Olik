@@ -7,9 +7,9 @@ nav_order: 1
 
 # Installation
 ---
-### **Oulik** installation
+### **Olik** installation
 ```bash
-npm install oulik
+npm install olik
 ```
 ### **Redux Devtools** installation
  * **[Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)**  

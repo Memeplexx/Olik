@@ -20,7 +20,7 @@ nav_order: 4
 
 Let's first assume that a store has been initialized as follows:
 ```ts
-import { make } from 'oulik-ng';
+import { make } from 'olik-ng';
 
 const get = make({ todos: new Array<string>() }); 
 ```
@@ -49,7 +49,7 @@ export class MyComponent {
 <div *ngFor="let todo of todos$ | async">{% raw %}{{todo}}{% endraw %}</div>
 ```
 ```ts
-import { observe } from 'oulik-ng';
+import { observe } from 'olik-ng';
 import { get } from './store';
 // some imports omitted for brevity
 
@@ -69,7 +69,7 @@ While this library exposes a `deriveFrom()` function (to memoize a single output
 ```ts
 import { combineLatest } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { observe } from 'oulik-ng';
+import { observe } from 'olik-ng';
 import { get } from './store';
 // some imports omitted for brevity
 

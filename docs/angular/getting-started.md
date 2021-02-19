@@ -8,13 +8,13 @@ nav_order: 2
 # 🎨 Getting started
 {: .no_toc }
 
-**Oulik-NG** wraps the core **Oulik** library in order to provide a convenient API to use within your Angular applications.
+**Olik-NG** wraps the core **Olik** library in order to provide a convenient API to use within your Angular applications.
 
 ---
 
 ### Install the **Library**
 ```bash
-npm install oulik-ng
+npm install olik-ng
 ```
 ### Install the **Redux Devtools extension** within your browser
  * **[Google Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)**  

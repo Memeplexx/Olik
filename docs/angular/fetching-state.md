@@ -20,7 +20,7 @@ Using *Fetchers* allows you to track the status of a request (loading / success 
 ---
 👉 Let's first assume that a store has been initialized as follows:
 ```ts
-import { make } from 'oulik-ng';
+import { make } from 'olik-ng';
 
 const get = make({ todos: new Array<string>() }); 
 ```
@@ -29,7 +29,7 @@ const get = make({ todos: new Array<string>() });
 ### **Defining** a fetcher
 ```ts
 import { get } from './my-store';
-import { createFetcher } from 'oulik-ng';
+import { createFetcher } from 'olik-ng';
 // some imports omitted for brevity
 
 @Injectable()
@@ -54,7 +54,7 @@ Once the fetch has resolved, you get a 'live link' to the underlying store data.
 </ng-container>
 ```
 ```ts
-import { observeFetch } from 'oulik-ng';
+import { observeFetch } from 'olik-ng';
 // some imports omitted for brevity
 
 @Component({...})
@@ -67,7 +67,7 @@ export class AppComponent {
 ### Option B: Using our fetcher within a **Resolver**
 [Resolvers](https://angular.io/api/router/Resolve){:target="_blank"} allow you to pre-fetch data before your component is instantiated. This simplifies your component code considerably because all the state you need is immediately at hand once your component is loaded, and you do not need to cater for displaying loading / error / success states
 ```ts
-import { resolve } from 'oulik-ng';
+import { resolve } from 'olik-ng';
 import { get } from './store';
 // some imports omitted for brevity
 

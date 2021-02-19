@@ -8,6 +8,6 @@ permalink: /docs/angular
 
 # Angular
 
-Oulik supports a thin layer of bindings so that you can more easily integrate it within your Angular applications.
+Olik supports a thin layer of bindings so that you can more easily integrate it within your Angular applications.
 {: .fs-6 .fw-300 }
 

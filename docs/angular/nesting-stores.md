@@ -20,7 +20,7 @@ nav_order: 6
 
 ### Configuring your application store to host nested stores
 ```ts
-import { make } from 'oulik-ng';
+import { make } from 'olik-ng';
 
 const get = make({ foo: '', bar: '' }, { containerForNestedStores: true })
 ```
@@ -31,7 +31,7 @@ const get = make({ foo: '', bar: '' }, { containerForNestedStores: true })
 <div>The number is: {% raw %}{{num$ | async}}{% endraw %}</div>
 ```
 ```ts
-import { makeNested } from 'oulik-ng';
+import { makeNested } from 'olik-ng';
 // some imports omitted for brevity
 
 @Component({...})

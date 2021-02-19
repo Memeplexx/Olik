@@ -2,33 +2,62 @@
 
 Let's first assume that a store has been initialized as follows:
 ```ts
-const get = make({
+const get = set({
   user: { firstName: '', lastName: '', age: 0 },
   todos: new Array<{ id: number, text: string, status: 'todo' | 'done' }>()
 });
 ```
 ---
-### **Non-array** updates
+### **Basic** updates
 ```ts
-get(s => s.user).replace({ firstName: 'Sam', lastName: 'Jones', age: 25 });
-get(s => s.user.age).replace(25);
-get(s => s.user).patch({ firstName: 'Sam', age: 25 });
+get(s => s.user.age)
+  .replace(25);
+```
+```ts
+get(s => s.user)
+  .patch({ firstName: 'Sam', age: 25 }); // patch() allows a partial update of a node
+```
+```ts
+get(s => s.todos)
+  .insert(arrayOfNewTodos);
+```
+```ts
+get(s => s.todos)
+  .removeAll();
+```
+```ts
+get(s => s.todos)
+  .replaceAll(arrayOfNewTodos);
 ```
 
-### **Array** updates
+
+### **Array element** updates
 ```ts
-get(s => s.todos).addAfter(arrayOfNewTodos);
-get(s => s.todos).addBefore(arrayOfNewTodos);
-get(s => s.todos).patchWhere(t => t.status === 'done').with({ status: 'todo' });
-get(s => s.todos).removeAll();
-get(s => s.todos).removeFirst();
-get(s => s.todos).removeLast();
-get(s => s.todos).removeWhere(t => t.status === 'done');
-get(s => s.todos).replaceAll(arrayOfNewTodos);
-get(s => s.todos).replaceWhere(t => t.id === 5).with({ id: 5, text: 'bake cookies', status: 'todo' });
-get(s => s.todos).upsertWhere(t => t.id === 5).with({ id: 5, text: 'bake cookies', status: 'todo' });
-get(s => s.todos).mergeWhere((currentTodo, newTodo) => currentTodo.id === newTodo.id).with(arrayOfNewTodos);
-get(s => s.todos.find(t => t.id === 2)!.text).replaceWith('something else');
+get(s => s.todos)
+  .find(t => t.id).eq(5)
+  .replace({ id: 5, text: 'bake cookies', status: 'todo' });
+```
+```ts
+get(s => s.todos)
+  .find(t => t.status).eq('done')
+  .patch({ status: 'todo' });
+```
+```ts
+get(s => s.todos)
+  .find(t => t.status.eq('done')
+  .remove();
+```
+```ts
+get(s => s.todos)
+  .upsertWhere(t => t.id === 5).with({ id: 5, text: 'bake cookies', status: 'todo' });
+```
+```ts
+get(s => s.todos)
+  .mergeWhere((currentTodo, newTodo) => currentTodo.id === newTodo.id).with(arrayOfNewTodos);
+```
+```ts
+get(s => s.todos
+  .find(t => t.id === 2)!.text).replaceWith('something else');
 ```
 
 ### **Tagged** updates ###

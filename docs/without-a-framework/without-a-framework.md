@@ -8,6 +8,6 @@ permalink: /docs/without-a-framework
 
 # No Framework
 
-Oulik can be used without any framework.
+Olik can be used without any framework.
 {: .fs-6 .fw-300 }
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oulik (0.3.3)
+    olik (0.3.3)
       jekyll (>= 3.8.5)
       jekyll-seo-tag (~> 2.0)
       rake (>= 12.3.1, < 13.1.0)
@@ -73,7 +73,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.1.4)
-  oulik!
+  olik!
 
 BUNDLED WITH
    2.1.4
