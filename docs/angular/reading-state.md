@@ -20,9 +20,9 @@ nav_order: 4
 
 Let's first assume that a store has been initialized as follows:
 ```ts
-import { make } from 'olik-ng';
+import { set } from 'olik-ng';
 
-const get = make({ todos: new Array<string>() }); 
+const get = set({ todos: new Array<string>() }); 
 ```
 ---
 
@@ -30,7 +30,7 @@ const get = make({ todos: new Array<string>() });
 ```ts
 import { get } from './store';
 
-const todos = get(s => s.todos).read();
+const todos = get().read().todos;
 ```
 
 ### **Listening** to state updates
@@ -55,7 +55,7 @@ import { get } from './store';
 
 @Component({...})
 export class MyComponent {
-  todos$ = observe(get(s => s.todos));
+  todos$ = observe(s => s.todos);
 }
 ```
 
@@ -69,15 +69,14 @@ While this library exposes a `deriveFrom()` function (to memoize a single output
 ```ts
 import { combineLatest } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { observe } from 'olik-ng';
-import { get } from './store';
+import { observe } from './store';
 // some imports omitted for brevity
 
-@Component({...})
+@Component({ /*... */ })
 export class MyComponent {
   data$ = combineLatest([
-    observe(get(s => s.todos)),
-    observe(get(s => s.some.other.value)),
+    observe(s => s.todos),
+    observe(s => s.some.other.value),
   ]).pipe(
     map(([todos, someOtherValue]) => /* some fancy calculation */ )
     shareReplay({ bufferSize: 1, refCount: true }),

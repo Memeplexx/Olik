@@ -1,3 +1,14 @@
+# ✍️ Writing State
+{: .no_toc }
+
+All state updates require a **selection** of state followed by some **action** to perform on that selection.
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ---
 
 Let's first assume that a store has been initialized as follows:
@@ -16,11 +27,11 @@ get(s => s.user)                                // Select node
 ```
 ```ts
 get(s => s.todos)                               // Select one array element
-  .find(t => t.id).eq(3)
+  .find(s => s.id).eq(3)
 ```
 ```ts
 get(s => s.todos)                               // Select many array elements
-  .filter(t => t.status).eq('todo')
+  .filter(s => s.status).eq('todo')
 ```
 ```ts
 get(s => s.todos)                               // Select one array element using custom query
@@ -32,28 +43,36 @@ get(s => s.todos)                               // Select many array elements us
 ```
 
 ### Step 2: **Updating selected state**
+Here is a sub-set of all state-update options.
 ```ts
-.replace(25)                                    // Replace non-array node
+.reset()                                        // Revert node state
 ```
 ```ts
-.patch({ firstName: 'Sam', age: 25 });          // Partially update non-array node
+.replace(25)                                    // Replace node
 ```
 ```ts
-.insert(arrayOfNewTodos);                       // Insert one or more array elements
+.patch({ firstName: 'Sam', age: 25 });          // Partially some object properties
 ```
 ```ts
-.replaceAll()                                   // Replace all selected array elements
+.insert(todos);                                 // Insert one or more array elements
+```
+```ts
+.replaceAll(todos)                              // Replace all selected array elements
 ```
 ```ts
 .removeAll()                                    // Remove all selected array elements
 ```
-
-
-### **Tagged** updates ###
-We can require that all updates be supplemented with a *tag* in order to help to identify the origin of a state update within the Devtools.  
 ```ts
-const get = makeEnforceTags({ some: { value: '' } });
-get(s => s.some.value).replaceWith('new value', 'MyComponent');
+.replaceElseInsert(todos, s => s.id)            // Attempt to replace todo(s) matching id, else insert
 ```
-In the above example, we've used 'MyComponent' as the tag but any user-defined string is acceptable.  
-For Webpack users, it may be more convenient to use the `__filename` node global object as a tag.  
+
+
+### Locating state updates using **tags** ###
+By default, all state-updates accept an optional **tag** which helps to identify the origin of a state-update within the Redux Devtools. We can make this tag obligatory by initializing the store using `setEnforceTags()` instead of `set()`
+```ts
+const get = setEnforceTags({ some: { value: '' } });
+const tag = 'MyComponent';
+get(s => s.some.value)                          // type: 'some.value [MyComponent]'
+  .replace('new value', tag);                   // replacement: 'new value'
+```
+In the above example, we've used `'MyComponent'` as the tag. If you're using Webpack, it may be more convenient to use the `__filename` node global object as a tag.

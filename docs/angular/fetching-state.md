@@ -20,9 +20,9 @@ Using *Fetchers* allows you to track the status of a request (loading / success 
 ---
 👉 Let's first assume that a store has been initialized as follows:
 ```ts
-import { make } from 'olik-ng';
+import { set } from 'olik-ng';
 
-const get = make({ todos: new Array<string>() }); 
+const get = set({ todos: new Array<string>() }); 
 ```
 ---
 
