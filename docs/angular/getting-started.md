@@ -22,5 +22,5 @@ npm install olik-ng
 
 ### Initialize your **store**
 ```ts
-export const get = make({ hello: '', world: 0 });
+export const get = set({ hello: '', world: 0 });
 ```

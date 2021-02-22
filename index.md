@@ -18,17 +18,17 @@ const get = set({
 });
 ```
 ```ts
-get(s => s.user.name)
-  .replace('James');
+get(s => s.username)               // type: 'username.replace()'
+  .replace('Terence');             // replacement: 'Terence'
 ```
 ```ts
-get(s => s.hobbies)
-  .find(h => h.id).eq(3)
-  .replace({ id: 3, txt: 'Baking' });
+get(s => s.favorite.foods)         // type: 'favorite.foods.insert()'
+  .insert(['Indian', 'Sushi']);    // insertion: ['Indian', 'Sushi']
 ```
 ```ts
-get(s => s.some.deeply.nested.number)
-  .replace(1);
+get(s => s.favorite.hobbies)       // type: 'favorite.hobbies.find().patch()'
+  .find(s => s.id).eq(3)           // query: 'id === 3',
+  .patch({ name: 'coding' });      // patch: { name: 'coding' }
 ```
 ---
 

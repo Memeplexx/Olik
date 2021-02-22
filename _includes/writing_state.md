@@ -8,57 +8,46 @@ const get = set({
 });
 ```
 ---
-### **Basic** updates
+
+### Step 1: **Selecting state to update**
+All state updates start with a selection from the state tree
 ```ts
-get(s => s.user.age)
-  .replace(25);
+get(s => s.user)                                // Select node
 ```
 ```ts
-get(s => s.user)
-  .patch({ firstName: 'Sam', age: 25 }); // patch() allows a partial update of a node
+get(s => s.todos)                               // Select one array element
+  .find(t => t.id).eq(3)
 ```
 ```ts
-get(s => s.todos)
-  .insert(arrayOfNewTodos);
+get(s => s.todos)                               // Select many array elements
+  .filter(t => t.status).eq('todo')
 ```
 ```ts
-get(s => s.todos)
-  .removeAll();
+get(s => s.todos)                               // Select one array element using custom query
+  .findCustom(t => /* some complex query */)  
 ```
 ```ts
-get(s => s.todos)
-  .replaceAll(arrayOfNewTodos);
+get(s => s.todos)                               // Select many array elements using custom query
+  .filterCustom(t => /* some complex query */)  
 ```
 
+### Step 2: **Updating selected state**
+```ts
+.replace(25)                                    // Replace non-array node
+```
+```ts
+.patch({ firstName: 'Sam', age: 25 });          // Partially update non-array node
+```
+```ts
+.insert(arrayOfNewTodos);                       // Insert one or more array elements
+```
+```ts
+.replaceAll()                                   // Replace all selected array elements
+```
+```ts
+.removeAll()                                    // Remove all selected array elements
+```
 
-### **Array element** updates
-```ts
-get(s => s.todos)
-  .find(t => t.id).eq(5)
-  .replace({ id: 5, text: 'bake cookies', status: 'todo' });
-```
-```ts
-get(s => s.todos)
-  .find(t => t.status).eq('done')
-  .patch({ status: 'todo' });
-```
-```ts
-get(s => s.todos)
-  .find(t => t.status.eq('done')
-  .remove();
-```
-```ts
-get(s => s.todos)
-  .upsertWhere(t => t.id === 5).with({ id: 5, text: 'bake cookies', status: 'todo' });
-```
-```ts
-get(s => s.todos)
-  .mergeWhere((currentTodo, newTodo) => currentTodo.id === newTodo.id).with(arrayOfNewTodos);
-```
-```ts
-get(s => s.todos
-  .find(t => t.id === 2)!.text).replaceWith('something else');
-```
 
 ### **Tagged** updates ###
 We can require that all updates be supplemented with a *tag* in order to help to identify the origin of a state update within the Devtools.  
