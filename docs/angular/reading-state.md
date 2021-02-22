@@ -22,7 +22,7 @@ Let's first assume that a store has been initialized as follows:
 ```ts
 import { set } from 'olik-ng';
 
-const get = set({ todos: new Array<string>() }); 
+const { get, observe, observeFetch } = set({ todos: new Array<string>() }); 
 ```
 ---
 
@@ -44,7 +44,7 @@ export class MyComponent {
 }
 ```  
 
-### **Consuming state** in your template
+### **Observing state** in your template
 ```html
 <div *ngFor="let todo of todos$ | async">{% raw %}{{todo}}{% endraw %}</div>
 ```
@@ -56,6 +56,27 @@ import { get } from './store';
 @Component({...})
 export class MyComponent {
   todos$ = observe(s => s.todos);
+}
+```
+
+
+### **Observing async** calls
+
+```html
+<ng-container *ngIf="todosFetch$ | async; let fetch;">
+  <div class="loading" *ngIf="fetch.isLoading">Loading...</div>
+  <div class="error" *ngIf="fetch.hasError">{% raw %}{{fetch.rejected}}{% endraw %}</div>
+  <div class="todo" *ngFor="let todo of todos$ | async">{% raw %}{{todo.text}}{% endraw %}</div>
+</ng-container>
+```
+```ts
+@Component({ /*... */ })
+export class MyComponent {
+  todos$ = observe(s => s.todos);
+  todosFetch$ = observeFetch(() => this.http.get('http://www.example.com/todos'));
+  constructor(
+    readonly http: HttpClient,
+  ) { }
 }
 ```
 
@@ -83,3 +104,4 @@ export class MyComponent {
   );
 }
 ```
+

@@ -20,8 +20,7 @@ const get = set({
 ```
 ---
 
-### Step 1: **Selecting state to update**
-All state updates start with a selection from the state tree
+### Step 1 of 2: **Selecting state to update**
 ```ts
 get(s => s.user)                                // Select node
 ```
@@ -35,15 +34,14 @@ get(s => s.todos)                               // Select many array elements
 ```
 ```ts
 get(s => s.todos)                               // Select one array element using custom query
-  .findCustom(t => /* some complex query */)  
+  .findCustom(t => /* some custom query */)  
 ```
 ```ts
 get(s => s.todos)                               // Select many array elements using custom query
-  .filterCustom(t => /* some complex query */)  
+  .filterCustom(t => /* some custom query */)  
 ```
 
-### Step 2: **Updating selected state**
-Here is a sub-set of all state-update options.
+### Step 2 of 2: **Updating selected state**
 ```ts
 .reset()                                        // Revert node state
 ```
@@ -51,7 +49,7 @@ Here is a sub-set of all state-update options.
 .replace(25)                                    // Replace node
 ```
 ```ts
-.patch({ firstName: 'Sam', age: 25 });          // Partially some object properties
+.patch({ firstName: 'Sam', age: 25 })           // Partially some object properties
 ```
 ```ts
 .insert(todos);                                 // Insert one or more array elements
@@ -63,16 +61,10 @@ Here is a sub-set of all state-update options.
 .removeAll()                                    // Remove all selected array elements
 ```
 ```ts
-.replaceElseInsert(todos, s => s.id)            // Attempt to replace todo(s) matching id, else insert
+.match(s => s.id)                               // Attempt to replace todo(s) matching id, else insert
+.replaceElseInsert(todos, s => s.id)
 ```
 
 
 ### Locating state updates using **tags** ###
-By default, all state-updates accept an optional **tag** which helps to identify the origin of a state-update within the Redux Devtools. We can make this tag obligatory by initializing the store using `setEnforceTags()` instead of `set()`
-```ts
-const get = setEnforceTags({ some: { value: '' } });
-const tag = 'MyComponent';
-get(s => s.some.value)                          // type: 'some.value [MyComponent]'
-  .replace('new value', tag);                   // replacement: 'new value'
-```
-In the above example, we've used `'MyComponent'` as the tag. If you're using Webpack, it may be more convenient to use the `__filename` node global object as a tag.
+By default, all state-updates accept an optional **tag** as their last argument. This identifies the origin of a state-update within the Redux Devtools. We can make this tag **obligatory** by initializing the store using `setEnforceTags()` instead of `set()`

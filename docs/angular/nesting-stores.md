@@ -18,14 +18,11 @@ nav_order: 6
 
 ---
 
-### Configuring your application-level store to host component-level (AKA 'nested') stores
+### Configuring your application-level store to host nested stores
 ```ts
-import { make } from 'olik-ng';
+import { set } from 'olik-ng';
 
-const get = set({
-  foo: '',
-  bar: '',
-}, { containerForNestedStores: true })
+set({ /* initial global state */ }, { isContainerForNestedStores: true })
 ```
 
 ### Creating and using a nested store
@@ -35,13 +32,13 @@ const get = set({
 <div>Submitted: {% raw %}{{val$ | async}}{% endraw %}</div>
 ```
 ```ts
-@Component({...})
-export class DemoComponent {
-  store = setNested({ val: '' }, { name: 'Incrementor' });
+@Component({ /* ... */ })
+export class MyComponent {
+  store = setNested({ val: '' }, { name: 'MyComponent' });
   val$ = this.store.observe(s => s.val);
   onClickButton(val: string) {
     this.store.get(s => s.val).replace(val);
   }
 }
 ```
-💡 Note that if your application store is **not** marked with `{ containerForNestedStores: true }` then your nested store will be registered as a **new** store within the Redux Devtools.
+💡 Note that if your application store is **not** marked with `isContainerForNestedStores: true` then your nested store will be registered as a **new** store within the Redux Devtools.
