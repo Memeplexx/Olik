@@ -8,10 +8,12 @@ permalink: /
 {: .fs-9 }
 # Olik
 
-## *Declarative* state-management.<br>*Free* of innacurate *actions* & convoluted reducers.<br>*All* in-line.
+### *Declarative* state-management. *Free* of innacurate *actions* & convoluted reducers. *All* in-line.
 {: .fs-6 .fw-300 }
 ### 🎨 **WHY CHOOSE OLIK?**
-Olik is designed to make your state management as **transparent** and semantically **consistent** as possible. Its fluent, typesafe API allows it to describe your actions in perfect detail (within the Redux Devtools) and perform efficient immutable updates. It can be used with ***[![](./src/assets/javascript.png)&nbsp;Vanilla-JS](https://memeplexx.github.io/olik/docs/vanilla-js)***, and has minimal bindings for ***[![](./src/assets/react.png)&nbsp;React](https://memeplexx.github.io/olik/docs/read)***, and ***[![](./src/assets/angular.png)&nbsp;Angular](https://memeplexx.github.io/olik/docs/angular)***.  
+Olik is designed to make your state management as **transparent** and semantically **consistent** as possible. Its fluent, typesafe API allows it to describe your actions in perfect detail (within the Redux Devtools) and perform efficient immutable updates.  
+
+It can be used with ***[![](/assets/images/javascript.png)&nbsp;Vanilla-JS](./docs/vanilla-js)***, and has minimal bindings for ***[![](/assets/images/react.png)&nbsp;React](./docs/react)***, and ***[![](/assets/images/angular.png)&nbsp;Angular](./docs/angular)***.  
 
 
 ```ts
