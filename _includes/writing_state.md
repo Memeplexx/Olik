@@ -1,4 +1,5 @@
 ### Step 1 of 2: **Selecting state to update**
+All state updates start by **selecting** a node to update, for example:
 ```ts
 get(s => s.user)                                // Select node
 ```
@@ -20,7 +21,7 @@ get(s => s.todos)                               // Select many array elements us
 ```
 
 ### Step 2 of 2: **Updating selected state**
-
+Once you have selected a node, you can perform some **update** on it, for example:
 ```ts
 .replace(25)                                    // Replace node
 ```

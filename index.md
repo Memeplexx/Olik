@@ -8,14 +8,14 @@ permalink: /
 {: .fs-9 }
 # Olik
 
-### *Declarative* state-management. *Free* of inaccurate *actions* & convoluted reducers. *All* in-line.
+##### *Declarative* state-management. *Free* of inaccurate *actions* & convoluted reducers. *All* in-line.
 {: .fs-6 .fw-300 }
 ### 🐤 **WHY?**
 Olik's fluent, typesafe API allows it to describe your actions in perfect detail while performing efficient immutable updates, for unparalleled **consistency**, **transparency**, and **debuggability**.
 
 ---
 
-### 🎨 **THE GIST**
+### 🎨 **GIST**
 ```ts
 const get = set({
   user: { name: '', age: 0 },

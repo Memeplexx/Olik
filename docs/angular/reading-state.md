@@ -6,17 +6,8 @@ nav_order: 4
 ---
 
 # 📖 Reading State
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
 
 ---
-
-
 
 Let's first assume that a store has been initialized as follows:
 ```ts
@@ -26,12 +17,14 @@ export const { get, observe, observeFetch } = set({ todos: new Array<string>() }
 ```
 ---
 
-### Reading **synchronously**
+### **Synchronous** reads
+To read state immediately, use the `read()` function
 ```ts
 const todos = get().read().todos;
 ```
 
 ### **Listening** to state updates
+You can listen to updates by selecting any part of your state and chaining the `onChange()` function
 ```ts
 @Component({ ... })
 export class MyComponent {
@@ -42,7 +35,8 @@ export class MyComponent {
 }
 ```  
 
-### **Observing state** in your template
+### **Displaying state** of **store** in your template
+To display live state in your templates, you can use the `observe()` function
 ```html
 <div *ngFor="let todo of todos$ | async">{% raw %}{{todo}}{% endraw %}</div>
 ```
@@ -54,8 +48,8 @@ export class MyComponent {
 ```
 
 
-### **Observing async** calls
-
+### **Displaying state** of **async** calls
+To display the status of an asynchronous operation, use the `observeFetch()` function
 ```html
 <ng-container *ngIf="todosFetch$ | async; let fetch;">
   <div class="loading" *ngIf="fetch.isLoading">Loading...</div>
