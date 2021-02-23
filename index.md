@@ -8,10 +8,10 @@ permalink: /
 {: .fs-9 }
 # Olik
 
-### *Declarative* state-management. *Free* of innacurate *actions* & convoluted reducers. *All* in-line.
+### *Declarative* state-management. *Free* of inaccurate *actions* & convoluted reducers. *All* in-line.
 {: .fs-6 .fw-300 }
-### 🎨 **WHY CHOOSE OLIK?**
-Olik is designed to make your state management as **transparent** and semantically **consistent** as possible. Its fluent, typesafe API allows it to describe your actions in perfect detail (within the Redux Devtools) and perform efficient immutable updates.  
+### 🎨 **WHY?**
+Olik's fluent API allows it to describe your actions in perfect detail while performing efficient immutable updates, for unparralleled **consistency**, **tranparency**, and **debuggability**.
 
 It can be used with ***[![](/assets/images/javascript.png)&nbsp;Vanilla-JS](./docs/vanilla-js)***, and has minimal bindings for ***[![](/assets/images/react.png)&nbsp;React](./docs/react)***, and ***[![](/assets/images/angular.png)&nbsp;Angular](./docs/angular)***.  
 
