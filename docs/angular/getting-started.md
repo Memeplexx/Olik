@@ -32,4 +32,4 @@ export const { get, observe, observeFetch } = set({ /* your initial state */ });
 
 ---
 
-[✍️ Writing state >](/docs/angular/writing-state){: .btn .btn-blue }
+[✍️ Writing state >](../writing-state){: .btn .btn-blue }
