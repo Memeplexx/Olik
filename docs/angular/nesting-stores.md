@@ -34,7 +34,7 @@ set({ /* initial global state */ }, { isContainerForNestedStores: true })
 ```ts
 @Component({ /* ... */ })
 export class MyComponent {
-  store = setNested({ val: '' }, { name: 'MyComponent' });
+  store = setNested({ val: '' }, { storeName: 'MyComponent' });
   val$ = this.store.observe(s => s.val);
   onClickButton(val: string) {
     this.store.get(s => s.val).replace(val);
