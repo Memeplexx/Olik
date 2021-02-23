@@ -8,7 +8,7 @@ nav_order: 6
 # 🥚 Nesting Stores
 {: .no_toc }
 
-**Nested stores** help you manage the internal state of your components in a way that is loosely coupled from your **application store**. Configuring your application store with the `containerForNestedStores` flag allows you to debug your nested stores in tandem with your application store within the Devtools.
+**Nested stores** help you manage the internal state of your components in a way that is loosely coupled from your **application store**. Configuring your application store with the `isContainerForNestedStores` flag allows you to debug your nested stores in tandem with your application store within the Devtools.
 
 ## Table of contents
 {: .no_toc .text-delta }
