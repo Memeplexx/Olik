@@ -13,14 +13,14 @@ Let's first assume that a store has been initialized as follows:
 ```ts
 import { set } from 'olik-ng';
 
-export const { get, observe, observeFetch } = set({ todos: new Array<string>() }); 
+export const { select, observe, observeFetch } = set({ todos: new Array<string>() }); 
 ```
 ---
 
 ### **Synchronous** reads
 To read state immediately, use the `read()` function
 ```ts
-const todos = get().read().todos;
+const todos = select().read().todos;
 ```
 
 ### **Listening** to state updates
@@ -28,7 +28,8 @@ You can listen to updates by selecting any part of your state and chaining the `
 ```ts
 @Component({ ... })
 export class MyComponent {
-  private listener = get(s => s.todos).onChange(todos => console.log(todos));
+  listener = select(s => s.todos)
+    .onChange(todos => console.log(todos));
   ngOnDestroy() {
     this.listener.unsubscribe(); // Please unsubscribe to avoid a memory leak
   }

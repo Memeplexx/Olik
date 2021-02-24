@@ -37,7 +37,7 @@ export class MyComponent {
   store = setNested({ val: '' }, { storeName: 'MyComponent' });
   val$ = this.store.observe(s => s.val);
   onClickButton(val: string) {
-    this.store.get(s => s.val).replace(val);
+    this.store.select(s => s.val).replace(val);
   }
 }
 ```

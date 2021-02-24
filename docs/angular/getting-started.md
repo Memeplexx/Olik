@@ -27,7 +27,7 @@ This extension improves the debugging experience substantially. Olik integrates 
 ## Initialize your store
 The `set()` function accepts your initial state and returns 3 other functions which we will explore shortly.
 ```ts
-export const { get, observe, observeFetch } = set({ /* your initial state */ });
+export const { select, observe, observeFetch } = set({ /* your initial state */ });
 ```
 
 ---

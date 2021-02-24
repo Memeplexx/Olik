@@ -1,23 +1,23 @@
 ### Step 1 of 2: **Selecting state to update**
 All state updates start by **selecting** a node to update, for example:
 ```ts
-get(s => s.user)                                // Select node
+select(s => s.user)                             // Select node
 ```
 ```ts
-get(s => s.todos)                               // Select one array element
-  .find(s => s.id).eq(3)
+select(s => s.todos)                            // Select one array element
+  .whereOne(s => s.id).eq(3)
 ```
 ```ts
-get(s => s.todos)                               // Select many array elements
-  .filter(s => s.status).eq('todo')
+select(s => s.todos)                            // Select many array elements
+  .whereMany(s => s.status).eq('todo')
 ```
 ```ts
-get(s => s.todos)                               // Select one array element using custom query
-  .findCustom(t => /* some custom query */)  
+select(s => s.todos)                            // Select one array element using custom query
+  .find(t => /* some custom query */)  
 ```
 ```ts
-get(s => s.todos)                               // Select many array elements using custom query
-  .filterCustom(t => /* some custom query */)  
+select(s => s.todos)                            // Select many array elements using custom query
+  .filter(t => /* some custom query */)  
 ```
 
 ### Step 2 of 2: **Updating selected state**
