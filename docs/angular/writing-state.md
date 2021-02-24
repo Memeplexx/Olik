@@ -24,5 +24,5 @@ In the above example, we've used `'MyComponent'` as the tag. If you're using Web
 
 ---
 
-[< 🎨 Getting started](/docs/angular/getting-started){: .btn .btn-outline } [📖 Reading state >](/docs/angular/reading-state){: .btn .btn-blue }
+[< 🎨 Getting started](.../getting-started){: .btn .btn-outline } [📖 Reading state >](../reading-state){: .btn .btn-blue }
  
