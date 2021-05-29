@@ -8,33 +8,37 @@ permalink: /
 {: .fs-9 }
 # Olik
 
-##### *Declarative* state-management. *Free* of inaccurate *actions* & convoluted reducers. *All* in-line.
+##### Axiomatic, self-describing, in-line state-management
 {: .fs-6 .fw-300 }
 ### 🐤 **WHY?**
-Olik's fluent, typesafe API allows it to describe your actions in perfect detail while performing efficient immutable updates, for unparalleled **consistency**, **transparency**, and **debuggability**.
+Olik allows you to comprehensively grok your state updates without ever leaving your component code. 
 
 ---
 
-### 🎨 **GIST**
+### 🎨 **THE GIST**
 ```ts
-const select = set({
-  user: { name: '', age: 0 },
-  hobbies: new Array<{ id: number, txt: string }>(),
-  some: { deeply: { nested: { number: 0 } } },
+const select = store({
+  username: '',
+  favorite: {
+    foods: new Array<string>(),
+    movies: new Array<{ id: number, name: string, rating: number }>(),
+  },
 });
 ```
 ```ts
-select(s => s.username)            // type: 'username.replace()'
-  .replace('Terence');             // replacement: 'Terence'
+select(s => s.username)               // type: 'username.replace()'
+  .replace('Terence');                // replacement: 'Terence'
 ```
+
 ```ts
-select(s => s.favorite.foods)      // type: 'favorite.foods.insert()'
-  .insert(['Indian', 'Sushi']);    // insertion: ['Indian', 'Sushi']
+select(s => s.favorite.foods)         // type: 'favorite.foods.insert()'
+  .insert(['Indian', 'Sushi']);       // insertion: ['Indian', 'Sushi']
 ```
+
 ```ts
-select(s => s.favorite.hobbies)    // type: 'favorite.hobbies.whereOne().patch()'
-  .whereOne(s => s.id).eq(3)       // query: 'id === 3',
-  .patch({ name: 'coding' });      // patch: { name: 'coding' }
+select(s => s.favorite.movies)        // type: 'favorite.movies.filter().remove()'
+  .filterWhere(s => s.rating).lte(2)  // where: 'rating <= 2'
+  .remove();                          // toRemove: [{ id: 2, name: 'Click', rating: 1 }, ...]
 ```
 
 ---
